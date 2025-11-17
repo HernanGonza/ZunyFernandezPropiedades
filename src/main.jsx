@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import { Toaster } from 'sonner';
 import './App.css';
-import './assets/fonts/fonts.css';
+import '/assets/fonts/fonts.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

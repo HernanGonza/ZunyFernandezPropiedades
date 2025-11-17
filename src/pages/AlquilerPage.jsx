@@ -1,8 +1,8 @@
 // src/pages/AlquilerPage.jsx
 import { useState, useEffect } from 'react'
-import PropertyListWithFilters from '/src/components/PropertyListWithFilters'
-import PropertyModal from '/src/components/PropertyModal'
-import Footer from '/src/components/Footer'           // ← NUEVO
+import PropertyListWithFilters from '/components/PropertyListWithFilters'
+import PropertyModal from '/components/PropertyModal'
+import Footer from '/components/Footer'           // ← NUEVO
 
 export default function AlquilerPage() {
   const [selectedProperty, setSelectedProperty] = useState(null)
@@ -15,7 +15,7 @@ export default function AlquilerPage() {
       {/* FONDO ANIMADO */}
       <div className="fixed-video-background">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="/src/assets/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
+          <source src="/assets/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
         </video>
       </div>
 
