@@ -1,5 +1,6 @@
 import styles from './Footer.module.css';
 import FormularioContacto from './FormularioContacto';
+import { getPublicPath } from '../utils/publicPath';
 
 
 export default function Footer() {
@@ -20,8 +21,8 @@ export default function Footer() {
             <div className={styles.social}>
               <p>Seguinos en redes:</p>
               <div className={styles.socialLinks}>
-                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer"><img src="/imagenes/redes/instagram.png" alt="Instagram"/></a>
-                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer"><img src="/imagenes/redes/facebook.png" alt="Facebook"/></a>
+                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer"><img src={getPublicPath('imagenes/redes/instagram.png')} alt="Instagram"/></a>
+                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer"><img src={getPublicPath('imagenes/redes/facebook.png')} alt="Facebook"/></a>
               </div>
             </div>
           </div>

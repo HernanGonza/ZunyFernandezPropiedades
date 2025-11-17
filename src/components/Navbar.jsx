@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
+import { getPublicPath } from '../utils/publicPath';
+
 
 export default function Navbar() {
   const location = useLocation();
@@ -42,7 +44,7 @@ export default function Navbar() {
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
         <Link to="/" onClick={() => { setMenuOpen(false); goToTop(); }} className={styles.logoLink}>
-          <img src="/imagenes/logoTransparente.png" alt="logo" className={styles.logoImg} />
+          <img src={getPublicPath('/imagenes/logoTransparente.png')} alt="logo" className={styles.logoImg} />
         </Link>
 
         {/* centered Menu text - always present */}
