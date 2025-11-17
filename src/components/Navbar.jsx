@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '/imagenes/logoTransparente.png';
 
 export default function Navbar() {
   const location = useLocation();
@@ -10,6 +9,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+   
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMenuOpen(false), [location.pathname]);
 
@@ -42,31 +42,30 @@ export default function Navbar() {
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
         <Link to="/" onClick={() => { setMenuOpen(false); goToTop(); }} className={styles.logoLink}>
-          <img src={logo} alt="logo" className={styles.logoImg} />
+          <img src="/imagenes/logoTransparente.png" alt="logo" className={styles.logoImg} />
         </Link>
 
         {/* centered Menu text - always present */}
         <div className={styles.navCenter}>
           <span
-  className={`${styles.menuTrigger} ${menuOpen ? styles.hidden : ''}`}
-  onClick={() => setMenuOpen(true)}
->
-  Menu
-</span>
+            className={`${styles.menuTrigger} ${menuOpen ? styles.hidden : ''}`}
+            onClick={() => setMenuOpen(true)}
+          >
+            Menu
+          </span>
         </div>
 
         {/* Contacto - oculto cuando el menú está abierto */}
         {!menuOpen && (
-          
           <span 
-  onClick={() => {
-    setMenuOpen(false);
-    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
-  }} 
-  className={styles.contactText}
->
-  Contacto
-</span>
+            onClick={() => {
+              setMenuOpen(false);
+              document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+            }} 
+            className={styles.contactText}
+          >
+            Contacto
+          </span>
         )}
       </nav>
 
@@ -86,8 +85,6 @@ export default function Navbar() {
       {/* fullscreen menu */}
       <div className={`${styles.fullscreenMenu} ${menuOpen ? styles.open : ''}`} aria-hidden={!menuOpen}>
         <div className={styles.menuContent}>
-          
-
           <a onClick={() => { setMenuOpen(false); goToTop(); }}>Arriba</a>
 
           {isHomePage ? (

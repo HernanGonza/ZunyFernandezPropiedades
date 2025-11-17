@@ -1,7 +1,6 @@
 import styles from './Footer.module.css';
 import FormularioContacto from './FormularioContacto';
-import InstragramIcon from '/imagenes/redes/instagram.png';
-import FacebookIcon from '/imagenes/redes/facebook.png';
+
 
 export default function Footer() {
   return (
@@ -21,8 +20,8 @@ export default function Footer() {
             <div className={styles.social}>
               <p>Seguinos en redes:</p>
               <div className={styles.socialLinks}>
-                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer"><img src={InstragramIcon} alt="Instagram"/></a>
-                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer"><img src={FacebookIcon} alt="Facebook"/></a>
+                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer"><img src="/imagenes/redes/instagram.png" alt="Instagram"/></a>
+                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer"><img src="/imagenes/redes/facebook.png" alt="Facebook"/></a>
               </div>
             </div>
           </div>

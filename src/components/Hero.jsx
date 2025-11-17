@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
+import { getPublicPath } from '../utils/publicPath';
 
 export default function Hero() {
   const [photos, setPhotos] = useState([]);
@@ -152,7 +153,7 @@ export default function Hero() {
         {/* Dibujo (entra desde la izquierda) */}
         <div className={styles.logoPart}>
           <img
-            src="/imagenes/dibujo-logo.png"
+            src={getPublicPath('/imagenes/dibujo-logo.png')}
             alt="Dibujo Zuni Fernández Propiedades"
             className={styles.logoImage}
           />
@@ -161,7 +162,7 @@ export default function Hero() {
         {/* Letras (entran desde la derecha) */}
         <div className={styles.logoPart}>
           <img
-            src="/imagenes/letras-logo.png"
+            src={getPublicPath('/imagenes/letras-logo.png')}
             alt="Letras Zuni Fernández Propiedades"
             className={styles.logoImage}
           />
