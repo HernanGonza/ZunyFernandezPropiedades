@@ -38,7 +38,7 @@ export default function App() {
               <Hero />
               <div className="fixed-video-background">
                 <video autoPlay muted loop playsInline preload="auto">
-                  <source src="/assets/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
+                  <source src="/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
                 </video>
               </div>
               <PropertySection sectionId="venta" title="Venta" propertyType="venta" onPropertyClick={openModal} />

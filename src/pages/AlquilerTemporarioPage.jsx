@@ -15,7 +15,7 @@ export default function AlquilerTemporarioPage() {
       {/* FONDO ANIMADO */}
       <div className="fixed-video-background">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="/assets/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
+          <source src="/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
         </video>
       </div>
 
