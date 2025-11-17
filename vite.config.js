@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   
   // Para GitHub Pages en subdirectorio con HashRouter
-  base: '/ZunyFernandezPropiedades/',
+  base: '/zuni-fernandez-propiedades/',
 
   resolve: {
     alias: {
