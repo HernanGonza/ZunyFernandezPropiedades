@@ -5,8 +5,8 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   plugins: [react()],
   
-  // Con HashRouter, usar '/' como base
-  base: './',
+  // Cambiar de './' a '/ZunyFernandezPropiedades/'
+  base: '/ZunyFernandezPropiedades/',
 
   resolve: {
     alias: {
