@@ -1,6 +1,6 @@
 import styles from './PropertyModal.module.css';
 import { useState, useEffect } from 'react';
-import { PLACEHOLDER_IMAGE } from '../utils/constants';
+import { PLACEHOLDER_IMAGE } from '/src/utils/constants';
 
 export default function PropertyModal({ property, onClose }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps

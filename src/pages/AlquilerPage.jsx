@@ -1,8 +1,8 @@
 // src/pages/AlquilerPage.jsx
 import { useState, useEffect } from 'react'
-import PropertyListWithFilters from '../components/PropertyListWithFilters'
-import PropertyModal from '../components/PropertyModal'
-import Footer from '../components/Footer'           // ← NUEVO
+import PropertyListWithFilters from '/src/components/PropertyListWithFilters'
+import PropertyModal from '/src/components/PropertyModal'
+import Footer from '/src/components/Footer'           // ← NUEVO
 
 export default function AlquilerPage() {
   const [selectedProperty, setSelectedProperty] = useState(null)

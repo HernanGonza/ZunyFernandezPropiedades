@@ -3,7 +3,7 @@
 import styles from './PropertyModal.module.css'
 import { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import { PLACEHOLDER_IMAGE } from '../utils/constants'
+import { PLACEHOLDER_IMAGE } from '/src/utils/constants'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 

@@ -1,7 +1,7 @@
 // src/components/PropertyCard.jsx
 import styles from './PropertyCard.module.css';
 import { useState } from 'react';
-import { PLACEHOLDER_IMAGE } from '../utils/constants';
+import { PLACEHOLDER_IMAGE } from '/src/utils/constants';
 
 export default function PropertyCard({ property, onOpen }) {
   // Imágenes
