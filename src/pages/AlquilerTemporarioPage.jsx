@@ -1,21 +1,22 @@
 // src/pages/AlquilerTemporarioPage.jsx
 import { useState, useEffect } from 'react'
-import PropertyListWithFilters from '/components/PropertyListWithFilters'
-import PropertyModal from '/components/PropertyModal'
-import Footer from '/components/Footer'           // ← NUEVO
+import PropertyListWithFilters from '../components/PropertyListWithFilters'
+import PropertyModal from '../components/PropertyModal'
+import Footer from '../components/Footer'
 
 export default function AlquilerTemporarioPage() {
   const [selectedProperty, setSelectedProperty] = useState(null)
 
   const openModal = (property) => setSelectedProperty(property)
   const closeModal = () => setSelectedProperty(null)
+    const videoPath = `${import.meta.env.BASE_URL}fondo/fondo-gradiente-animado.mp4`;
 
   return (
     <>
       {/* FONDO ANIMADO */}
       <div className="fixed-video-background">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="/fondo/fondo-gradiente-animado.mp4" type="video/mp4" />
+          <source src={videoPath} type="video/mp4" />
         </video>
       </div>
 
