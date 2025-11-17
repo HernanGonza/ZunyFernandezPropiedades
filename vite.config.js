@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
@@ -6,8 +5,8 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   plugins: [react()],
   
-  // ← ESTA ES LA LÍNEA QUE FALTABA (la clave de todo)
-  base: '/ZunyFernandezPropiedades/',
+  // Con HashRouter, usar '/' como base
+  base: './',
 
   resolve: {
     alias: {

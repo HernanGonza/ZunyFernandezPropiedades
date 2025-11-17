@@ -3,7 +3,7 @@
   font-family: 'Bree Serif';
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/BreeSerif-Regular.ttf') format('truetype');
+  src: url('/fonts/BreeSerif-Regular.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -12,42 +12,42 @@
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 200;
-  src: url('/assets/fonts/TitilliumWeb-ExtraLight.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-ExtraLight.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 300;
-  src: url('/assets/fonts/TitilliumWeb-Light.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-Light.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/TitilliumWeb-Regular.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-Regular.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 600;
-  src: url('/assets/fonts/TitilliumWeb-SemiBold.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-SemiBold.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 700;
-  src: url('/assets/fonts/TitilliumWeb-Bold.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-Bold.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: normal;
   font-weight: 900;
-  src: url('/assets/fonts/TitilliumWeb-Black.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-Black.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -56,35 +56,35 @@
   font-family: 'Titillium Web';
   font-style: italic;
   font-weight: 200;
-  src: url('/assets/fonts/TitilliumWeb-ExtraLightItalic.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-ExtraLightItalic.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: italic;
   font-weight: 300;
-  src: url('/assets/fonts/TitilliumWeb-LightItalic.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-LightItalic.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: italic;
   font-weight: 400;
-  src: url('/assets/fonts/TitilliumWeb-RegularItalic.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-RegularItalic.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: italic;
   font-weight: 600;
-  src: url('/assets/fonts/TitilliumWeb-SemiBoldItalic.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-SemiBoldItalic.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Titillium Web';
   font-style: italic;
   font-weight: 700;
-  src: url('/assets/fonts/TitilliumWeb-BoldItalic.woff2') format('woff2');
+  src: url('/fonts/TitilliumWeb-BoldItalic.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -93,34 +93,34 @@
   font-family: 'Karma';
   font-style: normal;
   font-weight: 300;
-  src: url('/assets/fonts/Karma-Light.woff2') format('woff2');
+  src: url('/fonts/Karma-Light.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Karma';
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/Karma-Regular.woff2') format('woff2');
+  src: url('/fonts/Karma-Regular.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Karma';
   font-style: normal;
   font-weight: 500;
-  src: url('/assets/fonts/Karma-Medium.woff2') format('woff2');
+  src: url('/fonts/Karma-Medium.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Karma';
   font-style: normal;
   font-weight: 600;
-  src: url('/assets/fonts/Karma-SemiBold.woff2') format('woff2');
+  src: url('/fonts/Karma-SemiBold.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'Karma';
   font-style: normal;
   font-weight: 700;
-  src: url('/assets/fonts/Karma-Bold.woff2') format('woff2');
+  src: url('/fonts/Karma-Bold.woff2') format('woff2');
   font-display: swap;
 }

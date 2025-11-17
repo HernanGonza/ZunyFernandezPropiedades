@@ -152,7 +152,7 @@ export default function Hero() {
         {/* Dibujo (entra desde la izquierda) */}
         <div className={styles.logoPart}>
           <img
-            src="/assets/imagenes/dibujo-logo.png"
+            src="/imagenes/dibujo-logo.png"
             alt="Dibujo Zuni Fernández Propiedades"
             className={styles.logoImage}
           />
@@ -161,7 +161,7 @@ export default function Hero() {
         {/* Letras (entran desde la derecha) */}
         <div className={styles.logoPart}>
           <img
-            src="/assets/imagenes/letras-logo.png"
+            src="/imagenes/letras-logo.png"
             alt="Letras Zuni Fernández Propiedades"
             className={styles.logoImage}
           />
