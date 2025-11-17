@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '/src/assets/imagenes/logoTransparente.png';
+import logo from '/assets/imagenes/logoTransparente.png';
 
 export default function Navbar() {
   const location = useLocation();

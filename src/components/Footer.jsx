@@ -1,7 +1,7 @@
 import styles from './Footer.module.css';
 import FormularioContacto from './FormularioContacto';
-import InstragramIcon from '/src/assets/imagenes/redes/instagram.png';
-import FacebookIcon from '/src/assets/imagenes/redes/facebook.png';
+import InstragramIcon from '/assets/imagenes/redes/instagram.png';
+import FacebookIcon from '/assets/imagenes/redes/facebook.png';
 
 export default function Footer() {
   return (
