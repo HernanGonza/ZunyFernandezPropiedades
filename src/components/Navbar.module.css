@@ -1,0 +1,219 @@
+/* NAVBAR TOP */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 999999;
+  transition: 0.35s ease;
+  background: rgba(0,0,0,0.15);
+  backdrop-filter: blur(12px);
+  isolation: isolate;
+  background-color: var(--deep-mocha);
+  font-family: var(--font-titillium); /* 👈 Titillium Web */
+  font-weight: 600 ;
+}
+
+.contactLink {
+  display: none;
+}
+
+.navbar.scrolled {
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(18px);
+  z-index: 999999;
+}
+
+/* LOGO */
+.logoLink img {
+  height: 75px;
+  transition: .3s ease;
+  z-index: 999999;
+}
+.logoLink img:hover { 
+  opacity: .85; 
+  transform: scale(1.05);
+  z-index: 999999;
+}
+
+/* CENTER TEXT (Menu visible always) */
+.navCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 999999;
+}
+
+.menuTrigger {
+  color: white;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity .2s ease, transform .2s ease;
+  font-size: 2.1rem;
+  font-weight: 300;
+  user-select: none;
+  z-index: 9999;
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre ícono y texto */
+  z-index: 999999;
+}
+
+/* Ícono de menú (☰) */
+.menuTrigger::before {
+  content: "☰";
+  font-size: 1.8rem;
+  line-height: 1;
+  z-index: 999999;
+}
+
+.menuTrigger:hover {
+  opacity: .75;
+  transform: translateY(-2px);
+}
+.menuTrigger.hidden {
+  visibility: hidden;
+}
+
+/* CONTACT */
+.contactText {
+  color: white;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity .25s ease, transform .25s ease;
+  font-size: 2.1rem;
+  font-weight: 300;
+  user-select: none;
+  z-index: 9999;
+}
+
+/* FIXED CERRAR */
+.closeFixed {
+  position: fixed;
+  top: calc((70px - 2.1rem) / 2);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999999;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 2.1rem;
+  font-weight: 300;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  border: none;
+  user-select: none;
+  transition: opacity .2s ease, transform .2s ease;
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-titillium);
+}
+
+/* 👇 Animación de hover en "Cerrar" */
+.closeFixed:hover {
+  opacity: .85;
+  transform: translateX(-50%) scale(1.05); /* Ligero scale */
+}
+
+/* FULLSCREEN MENU */
+.fullscreenMenu {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(25px);
+  background: rgba(0,0,0,0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+/* 👇 Delay suave al abrir */
+.fullscreenMenu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity .4s ease; /* Ligeramente más lento */
+}
+
+/* MENU CONTENT */
+.menuContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  text-align: center;
+  animation: scaleIn .33s ease forwards;
+  z-index: 9992;
+}
+
+.menuContent a,
+.menuContent a:visited {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-titillium); /* 👈 Titillium Web */
+  font-size: 2.1rem;
+  font-weight: 600; /* más legible */
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .25s ease;
+  user-select: none;
+}
+.menuContent a:hover {
+  opacity: .65;
+  transform: translateX(4px);
+}
+
+/* ANIMATION */
+@keyframes scaleIn {
+  from { 
+    transform: scale(.96); 
+    opacity: 0; 
+  }
+  to { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* ===== MEDIA QUERY: MOBILE ===== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  .navCenter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Ocultar "Contacto" en móvil */
+  .contactText {
+    display: none !important;
+  }
+
+  /* Asegurar que el ícono se vea bien en móvil */
+  .menuTrigger::before {
+    font-size: 1.6rem;
+  }
+
+  .menuTrigger {
+    font-size: 1.8rem;
+    gap: 6px;
+  }
+
+  .closeFixed {
+    font-size: 1.8rem;
+  }
+
+  .contactLink {
+    display: inline;
+  }
+}

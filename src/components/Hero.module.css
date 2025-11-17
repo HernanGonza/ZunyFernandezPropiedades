@@ -1,0 +1,145 @@
+/* src/components/Hero.module.css */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Slider de fondo */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.65;
+}
+
+.slide.zoom img {
+  transform: scale(1.08);
+  transition: transform 8s ease-out;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  background: rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+/* Contenido centrado */
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  z-index: 99999;
+  color: white;
+  /* Estado inicial: ambos elementos fuera de pantalla */
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.contentAnimated {
+  opacity: 1;
+}
+
+/* Partes del logo */
+.logoPart {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Dibujo (entra desde la izquierda) */
+.logoPart:first-child {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+/* Letras (entran desde la derecha) */
+.logoPart:last-child {
+  animation: slideInRight 0.8s ease-out forwards;
+  animation-delay: 0.2s; /* Un poco más tarde para el efecto de ensamblaje */
+}
+
+.logoImage {
+  max-width: 100%;
+  height: 180px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Animaciones */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: 0 1rem;
+  }
+
+  .logoImage {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoImage {
+    max-width: 80%;
+  }
+}

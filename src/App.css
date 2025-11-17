@@ -1,0 +1,155 @@
+/* src/App.css */
+:root {
+  --color-1: #000;
+  --color-2: #EE7A32;
+  --color-3: #5A8433;
+  --color-4: #036630;
+  --color-5: #EB6332;
+  --pumpkin-spice: #ee7a32ff;
+--forest-moss: #5a8433ff;
+--deep-mocha: #484041ff;
+--twilight-indigo: #434371ff;
+--green-yellow: #b5f44aff;
+}
+
+:root {
+  --font-bree: 'Bree Serif', serif;
+  --font-titillium: 'Titillium Web', sans-serif;
+  --font-karma: 'Karma', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-bree), serif;
+  scroll-behavior: smooth;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Aplicar flex solo a secciones que NO sean el Hero */
+section:not(#hero) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem 2rem;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-1);
+}
+
+
+
+
+
+section[aria-label="Notifications alt+T"]:empty {
+  display: none !important;
+}
+
+#app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== Fuentes por tipo de contenido ===== */
+
+/* Logo, hero title, grandes titulares */
+h1, .logo-title {
+  font-family: var(--font-titillium);
+  font-weight: 400;
+}
+
+/* Títulos de sección, cards, botones */
+h2, h3, h4, h5, h6,
+.navLink,
+.dropdownLink,
+.button,
+.viewAllButton,
+.contactButton,
+.menuTrigger,
+.closeFixed {
+  font-family: var(--font-titillium);
+  font-weight: 600;
+}
+
+/* Texto de cuerpo: párrafos, inputs, descripciones */
+p, span, label,
+input, textarea, select,
+.description,
+.info,
+.card p {
+  font-family: var(--font-titillium);
+  font-weight: 400;
+}
+
+/* ===== Colores por función ===== */
+
+/* Texto primario */
+h1, h2, h3, h4, h5, h6,
+p, span, label {
+  color: var(--color-1); /* negro */
+}
+
+/* Botones principales */
+.button,
+.viewAllButton,
+.contactButton,
+.menuTrigger,
+.closeFixed {
+  background-color: var(--color-4); /* verde oscuro */
+  color: white;
+}
+
+.button:hover,
+.viewAllButton:hover {
+  background-color: var(--color-3); /* verde medio */
+}
+
+/* Links y botones secundarios */
+.navLink,
+.dropdownLink {
+  color: var(--color-1);
+}
+
+.navLink:hover,
+.dropdownLink:hover {
+  color: var(--color-2); /* naranja */
+}
+.gradient-sections {
+  position: relative;
+  background: transparent; /* eliminar el gradiente estático */
+  padding-bottom: 2rem;
+}
+
+.fixed-video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10; /* detrás de todo el contenido */
+  pointer-events: none; /* no interfiere con clics */
+}
+
+.fixed-video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
