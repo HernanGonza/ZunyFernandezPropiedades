@@ -5,8 +5,8 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   plugins: [react()],
   
-  // Para dominio propio:
-  base: '/',
+  // Cambiar de './' a '/ZunyFernandezPropiedades/'
+  base: '/ZunyFernandezPropiedades/',
 
   resolve: {
     alias: {
