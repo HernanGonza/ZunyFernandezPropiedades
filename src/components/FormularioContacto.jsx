@@ -6,18 +6,38 @@ export default function FormularioContacto() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Por ahora, abre el cliente de correo (como en Tasaciones)
-    const subject = "Contacto desde el sitio web";
-    const body = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`;
-    window.location.href = `mailto:hernangozalez@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // ✅ Usa las variables de estado correctas
+    const payload = {
+      name: name,
+      email: email,
+      message: message,
+      type: 'contacto'
+    };
 
-    // Resetear formulario
-    setName("");
-    setEmail("");
-    setMessage("");
+    try {
+      const res = await fetch('https://iahqqebglgzfjskzidrs.supabase.co/functions/v1/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert('✅ ¡Mensaje enviado!');
+        // Opcional: resetear el formulario
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        throw new Error(data.error || 'Error al enviar');
+      }
+    } catch (err) {
+      console.error(err); // ← para ver el error real en consola
+      alert('❌ Error: ' + err.message);
+    }
   };
 
   return (
