@@ -95,7 +95,7 @@ export default function Navbar() {
               <a onClick={(e) => handleLink(e, 'alquiler')}>Alquiler</a>
               <a onClick={(e) => handleLink(e, 'alquiler-temporario')}>Alquiler temporario</a>
               <a onClick={(e) => handleLink(e, 'tasaciones')}>Tasaciones</a>
-              <a className={styles.contactLink} onClick={(e) => handleLink(e, 'contacto')}>Contacto</a>
+              <a className={styles.contactLink} onClick={(e) => handleLink(e, 'footer')}>Contacto</a>
             </>
           ) : (
             <Link to="/" onClick={() => setMenuOpen(false)}>Volver a la página principal</Link>
