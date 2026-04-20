@@ -1,53 +1,52 @@
-/* src/components/PropertyModal.module.css */
+/* ============================================
+   PROPERTY MODAL — Elegante, cálido
+   ============================================ */
 
 .backdrop {
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  background: rgba(44, 36, 22, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999999999999999999999999999;
+  z-index: 9999999;
   padding: 1rem;
 }
 
 .modal {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  height: 90vh;                    /* ← ALTURA FIJA para que quepa todo */
-  max-height: 800px;               /* ← límite razonable */
-  background: rgba(18, 18, 18, 0.88);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 24px;
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9);
+  max-width: 980px;
+  height: 90vh;
+  max-height: 780px;
+  background: var(--blanco);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
   overflow: hidden;
-  color: white;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--crema-oscura);
 }
 
-/* FOTO GRANDE pero con tamaño controlado */
+/* ===== IMAGEN PRINCIPAL ===== */
 .mainImageContainer {
   position: relative;
   width: 100%;
-  height: 48%;                     /* ← 48% del modal → grande pero deja espacio */
-  min-height: 300px;
-  background: #000;
+  height: 46%;
+  min-height: 280px;
+  background: var(--crema-oscura);
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .mainImage {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #000;
+  object-fit: cover;
   transition: transform 0.6s ease;
 }
 
@@ -55,14 +54,24 @@
   transform: scale(1.02);
 }
 
-/* FLECHAS */
+/* Gradiente sobre imagen */
+.mainImageContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(253, 250, 245, 0.8));
+  pointer-events: none;
+}
+
+/* ===== FLECHAS DE IMAGEN ===== */
 .modalArrows {
   position: absolute;
   top: 50%;
   left: 0; right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 20px;
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 5;
@@ -70,116 +79,157 @@
 
 .modalArrows button {
   pointer-events: auto;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
+  background: rgba(245, 240, 232, 0.92);
+  color: var(--carbon);
   border: none;
-  width: 68px;
-  height: 68px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 300;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modalArrows button:hover {
-  background: #e8b923;
-  transform: scale(1.25);
+  background: var(--tierra);
+  color: white;
+  transform: scale(1.12);
 }
 
+/* ===== BOTÓN CERRAR ===== */
 .closeButton {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
+  top: 16px;
+  right: 16px;
+  background: rgba(245, 240, 232, 0.92);
+  color: var(--carbon);
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  font-size: 32px;
+  font-size: 20px;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.3s;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
 }
 
 .closeButton:hover {
-  background: #e8b923;
-  transform: scale(1.2);
+  background: var(--tierra);
+  color: white;
+  transform: scale(1.1);
 }
 
-/* CONTENIDO → ahora siempre visible y con scroll interno solo si hace falta */
+/* ===== CONTENIDO ===== */
 .content {
-  flex: 1;                         /* ← toma todo el espacio restante */
-  padding: 28px 32px;
-  overflow-y: auto;                /* ← solo scrollea el contenido si es muy largo */
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .title {
-  font-family: var(--font-titillium);
-  font-size: 2.4rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
   margin: 0;
-  line-height: 1.15;
-  color: white;
+  line-height: 1.2;
+  color: var(--carbon);
 }
 
 .price {
-  font-size: 2rem;
+  font-family: var(--font-body);
+  font-size: 1.7rem;
   font-weight: 700;
-  color: #e8b923;
+  color: var(--tierra);
+  letter-spacing: -0.3px;
 }
 
 .description {
-  font-family: var(--font-karma);
-  font-size: 1.15rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.96);
-  margin-bottom: 8px;
+  color: var(--gris-calido);
+  margin-bottom: 4px;
 }
 
+/* ===== DETALLES EN GRID ===== */
 .detailsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .detailItem {
-  background: rgba(255, 255, 255, 0.14);
-  padding: 18px;
-  border-radius: 14px;
+  background: var(--crema);
+  border: 1px solid var(--crema-oscura);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
   text-align: center;
-  backdrop-filter: blur(8px);
+  transition: border-color 0.2s;
+}
+
+.detailItem:hover {
+  border-color: var(--arena);
+}
+
+.detailItem span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-calido);
+  margin-bottom: 6px;
 }
 
 .detailItem strong {
   display: block;
-  font-size: 1.7rem;
-  color: #e8b923;
-  margin-top: 8px;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--musgo);
+  font-family: var(--font-display);
 }
 
+/* ===== MAPA ===== */
 .mapWrapper {
-  margin-top: 32px;
+  margin-top: 20px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--crema-oscura);
 }
 
 .mapTitle {
-  margin: 0 0 12px 0;
-  font-size: 1.4rem;
-  color: #e8b923;
+  margin: 0 0 10px 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--musgo);
 }
-/* Pequeño truco para móviles */
+
+/* ===== RESPONSIVE ===== */
 @media (max-height: 700px) {
-  .mainImageContainer {
-    height: 40%;
-  }
-  .title { font-size: 2rem; }
-  .price { font-size: 1.7rem; }
+  .mainImageContainer { height: 38%; }
+  .title { font-size: 1.6rem; }
+  .price { font-size: 1.4rem; }
+}
+
+@media (max-width: 600px) {
+  .modal { border-radius: var(--radius-lg); height: 95vh; }
+  .content { padding: 18px 20px; }
+  .title { font-size: 1.5rem; }
 }

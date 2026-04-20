@@ -1,104 +1,90 @@
-// src/components/PropertyCard.jsx
+// src/components/PropertyCard.jsx — REDESIGN
 import styles from './PropertyCard.module.css';
 import { useState } from 'react';
 import { PLACEHOLDER_IMAGE } from '/src/utils/constants';
 
+const TIPO_LABEL = {
+  venta: 'En Venta',
+  alquiler: 'En Alquiler',
+  alquiler_temporario: 'Temporario',
+};
+
 export default function PropertyCard({ property, onOpen }) {
-  // Imágenes
-  const images = property.imagenes && Array.isArray(property.imagenes) && property.imagenes.length > 0
-    ? property.imagenes
-    : [PLACEHOLDER_IMAGE];
+  const images =
+    property.imagenes && Array.isArray(property.imagenes) && property.imagenes.length > 0
+      ? property.imagenes
+      : [PLACEHOLDER_IMAGE];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const goToImage = (index) => {
-    setCurrentImageIndex(index);
-  };
+  const handleClick = () => { if (onOpen) onOpen(property); };
 
-  const handleClick = () => {
-    if (onOpen) onOpen(property);
-  };
-
-  // ← NUEVO: convierte alquiler_temporario → Alquiler Temporario, etc.
   const formatearOperacion = (op) => {
     if (!op) return '';
     const mapa = {
       venta: 'Venta',
       alquiler: 'Alquiler',
-      alquiler_temporario: 'Alquiler Temporario',
-      temporario: 'Alquiler Temporario',
+      alquiler_temporario: 'Alq. Temporario',
+      temporario: 'Alq. Temporario',
     };
     return mapa[op.toLowerCase()] || op.charAt(0).toUpperCase() + op.slice(1).replace(/_/g, ' ');
   };
 
-  // ← NUEVO: precio seguro + moneda correcta
   const formatearPrecio = () => {
     const precio = property.precio;
-    const moneda = property.moneda || 'ARS'; // si no tiene moneda, asume pesos
-
-    if (!precio || precio === '' || precio == null) {
-      return 'Consultar';
-    }
-
+    const moneda = property.moneda || 'ARS';
+    if (!precio || precio === '' || precio == null) return 'Consultar';
     const numero = Number(precio);
     if (isNaN(numero)) return 'Consultar';
-
     const formateado = new Intl.NumberFormat('es-AR').format(numero);
     return moneda === 'USD' ? `USD ${formateado}` : `$ ${formateado}`;
   };
 
+  const tipoLabel = TIPO_LABEL[property.tipo] || TIPO_LABEL[property.operacion] || '';
+
   return (
     <div className={styles.card} onClick={handleClick}>
-      
-      {/* ←←← SOLO ESTO ES NUEVO: el cartel rojo */}
+
+      {/* Badge de estado (vendido/alquilado/reservado) */}
       {property.estado && property.estado !== 'disponible' && (
         <div className={styles.estadoBadge}>
-          {property.estado === 'vendido' && 'VENDIDO'}
-          {property.estado === 'alquilado' && (
-            (property.operacion === 'alquiler_temporario' || property.tipo === 'alquiler_temporario')
-              ? 'ALQUILADO TEMPORARIO'
-              : 'ALQUILADO'
-          )}
-          {property.estado === 'reservado' && 'RESERVADO'}
+          {property.estado === 'vendido' && 'Vendido'}
+          {property.estado === 'alquilado' && 'Alquilado'}
+          {property.estado === 'reservado' && 'Reservado'}
         </div>
       )}
 
+      {/* Badge destacado */}
+      {property.destacado && (
+        <div className={styles.destacadoBadge}>Destacado</div>
+      )}
+
+      {/* Imagen con carrusel */}
       <div className={styles.imageContainer}>
         <img
           src={images[currentImageIndex] || PLACEHOLDER_IMAGE}
           alt={property.titulo || 'Propiedad'}
           className={styles.image}
-          onError={(e) => {
-            e.target.src = PLACEHOLDER_IMAGE;
-          }}
+          onError={(e) => { e.target.src = PLACEHOLDER_IMAGE; }}
         />
 
         {images.length > 1 && (
           <>
-            {/* FLECHAS 100% ORIGINALES */}
             <div className={styles.carouselArrows}>
               <button
                 className={styles.arrow}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCurrentImageIndex((prev) =>
-                    prev === 0 ? images.length - 1 : prev - 1
-                  );
+                  setCurrentImageIndex((prev) => prev === 0 ? images.length - 1 : prev - 1);
                 }}
-              >
-                &lsaquo;
-              </button>
+              >‹</button>
               <button
                 className={styles.arrow}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCurrentImageIndex((prev) =>
-                    prev === images.length - 1 ? 0 : prev + 1
-                  );
+                  setCurrentImageIndex((prev) => prev === images.length - 1 ? 0 : prev + 1);
                 }}
-              >
-                &rsaquo;
-              </button>
+              >›</button>
             </div>
 
             <div className={styles.carouselControls}>
@@ -106,10 +92,7 @@ export default function PropertyCard({ property, onOpen }) {
                 <span
                   key={idx}
                   className={`${styles.dot} ${idx === currentImageIndex ? styles.active : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToImage(idx);
-                  }}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
                 />
               ))}
             </div>
@@ -117,19 +100,18 @@ export default function PropertyCard({ property, onOpen }) {
         )}
       </div>
 
+      {/* Contenido */}
       <div className={styles.content}>
+        {tipoLabel && <p className={styles.typeLabel}>{tipoLabel}</p>}
         <h3 className={styles.title}>{property.titulo || 'Sin título'}</h3>
-
-        {/* PRECIO MEJORADO (maneja null + moneda) */}
         <p className={styles.price}>{formatearPrecio()}</p>
-
-        {/* INFO MEJORADA (operación bonita + datos seguros) */}
         <p className={styles.info}>
-          {formatearOperacion(property.operacion || property.tipo || '')}
-          {' • '}
-          {property.habitaciones || 0} hab
-          {' • '}
-          {property.m2 || 0} m²
+          {property.habitaciones > 0 && <span>🛏 {property.habitaciones} hab</span>}
+          {property.banos > 0 && <span>🚿 {property.banos} baños</span>}
+          {property.m2 > 0 && <span>📐 {property.m2} m²</span>}
+          {!property.habitaciones && !property.banos && !property.m2 && (
+            <span>{formatearOperacion(property.operacion || property.tipo || '')}</span>
+          )}
         </p>
       </div>
     </div>

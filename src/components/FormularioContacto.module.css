@@ -1,59 +1,71 @@
+/* ============================================
+   FORMULARIO DE CONTACTO (Footer)
+   ============================================ */
+
 .formulario {
   width: 100%;
-  max-width: 400px;
-  font-family: var(--font-titillium);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
-}
-
-.formRow {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.formRow > .formGroup {
-  flex: 1;
-  min-width: 200px;
-}
-
-.label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+  width: 100%;
 }
 
 .input,
-.textarea,
-.select {
+.textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(245, 240, 232, 0.06);
+  border: 1px solid rgba(245, 240, 232, 0.15);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--crema);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(245, 240, 232, 0.35);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: rgba(181, 194, 122, 0.6);
+  background: rgba(245, 240, 232, 0.1);
 }
 
 .textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 90px;
 }
 
 .button {
   width: 100%;
-  padding: 1rem;
-  background-color: var(--color-2);
+  padding: 0.85rem;
+  background: var(--musgo);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  font-weight: bold;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s;
-  font-family: var(--font-titillium);
+  transition: background var(--transition), transform var(--transition);
+  margin-top: 0.2rem;
 }
 
 .button:hover {
-  background-color: var(--color-3);
+  background: var(--musgo-oscuro);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
 }

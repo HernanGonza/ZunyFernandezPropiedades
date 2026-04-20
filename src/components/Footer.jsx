@@ -1,7 +1,7 @@
+// src/components/Footer.jsx — REDESIGN
 import styles from './Footer.module.css';
 import FormularioContacto from './FormularioContacto';
 import { getPublicPath } from '../utils/publicPath';
-
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           <div className={styles.content}>
             <h3>Zuny Fernandez Propiedades</h3>
             <p>Asesores inmobiliarios en Posadas, Misiones y alrededores.</p>
-            
+
             <div className={styles.contactInfo}>
               <p><strong>Email:</strong> zunypropiedades@gmail.com</p>
               <p><strong>Teléfono:</strong> +54 376 469-8600</p>
@@ -21,8 +21,12 @@ export default function Footer() {
             <div className={styles.social}>
               <p>Seguinos en redes:</p>
               <div className={styles.socialLinks}>
-                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer"><img src={getPublicPath('imagenes/redes/instagram.png')} alt="Instagram"/></a>
-                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer"><img src={getPublicPath('imagenes/redes/facebook.png')} alt="Facebook"/></a>
+                <a href="https://www.instagram.com/zunyfernandez/?hl=es" target="_blank" rel="noopener noreferrer">
+                  <img src={getPublicPath('imagenes/redes/instagram.png')} alt="Instagram" />
+                </a>
+                <a href="https://www.facebook.com/zunynegociosinmobiliarios/?locale=es_LA" target="_blank" rel="noopener noreferrer">
+                  <img src={getPublicPath('imagenes/redes/facebook.png')} alt="Facebook" />
+                </a>
               </div>
             </div>
           </div>
@@ -35,6 +39,9 @@ export default function Footer() {
 
         <div className={styles.copyright}>
           &copy; {new Date().getFullYear()} Zuny Fernández Propiedades. Todos los derechos reservados.
+        </div>
+        <div className={styles.developer}>
+          Desarrollado por <a href="https://www.paralelo.tech" target="_blank" rel="noopener noreferrer">Paralelo</a>
         </div>
       </div>
     </footer>

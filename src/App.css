@@ -1,24 +1,47 @@
-/* src/App.css */
-:root {
-  --color-1: #000;
-  --color-2: #EE7A32;
-  --color-3: #5A8433;
-  --color-4: #036630;
-  --color-5: #EB6332;
-  --pumpkin-spice: #ee7a32ff;
---forest-moss: #5a8433ff;
---deep-mocha: #484041ff;
---twilight-indigo: #434371ff;
---green-yellow: #b5f44aff;
-}
+/* ============================================
+   ZUNY FERNANDEZ PROPIEDADES — REDESIGN
+   Paleta: Tierra, crema, verde oliva, musgo
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --font-bree: 'Bree Serif', serif;
-  --font-titillium: 'Titillium Web', sans-serif;
-  --font-karma: 'Karma', serif;
+  /* Paleta principal */
+  --crema:        #F5F0E8;
+  --crema-oscura: #EDE5D4;
+  --arena:        #D4C5A9;
+  --tierra:       #A0714F;
+  --tierra-oscura:#7A5235;
+  --musgo:        #5C6B3A;
+  --musgo-oscuro: #3D4A25;
+  --oliva:        #8A9A5B;
+  --oliva-claro:  #B5C27A;
+  --carbon:       #2C2416;
+  --gris-calido:  #7A7060;
+  --blanco:       #FDFAF5;
+
+  /* Tipografías */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+
+  /* Sombras */
+  --shadow-sm:  0 2px 8px rgba(44, 36, 22, 0.08);
+  --shadow-md:  0 6px 24px rgba(44, 36, 22, 0.12);
+  --shadow-lg:  0 16px 48px rgba(44, 36, 22, 0.18);
+  --shadow-xl:  0 32px 80px rgba(44, 36, 22, 0.22);
+
+  /* Bordes */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  /* Transiciones */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* ===== RESET ===== */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -26,40 +49,16 @@
 
 html, body, #root {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: var(--font-bree), serif;
+  font-family: var(--font-body);
+  background-color: var(--crema);
+  color: var(--carbon);
   scroll-behavior: smooth;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Aplicar flex solo a secciones que NO sean el Hero */
-section:not(#hero) {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 2rem 2rem;
-}
-
-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-1);
-}
-
-
-
-
-
-section[aria-label="Notifications alt+T"]:empty {
-  display: none !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 #app-wrapper {
@@ -68,88 +67,46 @@ section[aria-label="Notifications alt+T"]:empty {
   min-height: 100vh;
 }
 
-/* ===== Fuentes por tipo de contenido ===== */
-
-/* Logo, hero title, grandes titulares */
-h1, .logo-title {
-  font-family: var(--font-titillium);
-  font-weight: 400;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--crema);
 }
 
-/* Títulos de sección, cards, botones */
-h2, h3, h4, h5, h6,
-.navLink,
-.dropdownLink,
-.button,
-.viewAllButton,
-.contactButton,
-.menuTrigger,
-.closeFixed {
-  font-family: var(--font-titillium);
-  font-weight: 600;
+/* El footer empuja hasta el fondo sin dejar espacio */
+.app-container > footer,
+#app-wrapper > footer {
+  margin-top: auto;
 }
 
-/* Texto de cuerpo: párrafos, inputs, descripciones */
-p, span, label,
-input, textarea, select,
-.description,
-.info,
-.card p {
-  font-family: var(--font-titillium);
-  font-weight: 400;
-}
-
-/* ===== Colores por función ===== */
-
-/* Texto primario */
-h1, h2, h3, h4, h5, h6,
-p, span, label {
-  color: var(--color-1); /* negro */
-}
-
-/* Botones principales */
-.button,
-.viewAllButton,
-.contactButton,
-.menuTrigger,
-.closeFixed {
-  background-color: var(--color-4); /* verde oscuro */
-  color: white;
-}
-
-.button:hover,
-.viewAllButton:hover {
-  background-color: var(--color-3); /* verde medio */
-}
-
-/* Links y botones secundarios */
-.navLink,
-.dropdownLink {
-  color: var(--color-1);
-}
-
-.navLink:hover,
-.dropdownLink:hover {
-  color: var(--color-2); /* naranja */
-}
-.gradient-sections {
-  position: relative;
-  background: transparent; /* eliminar el gradiente estático */
-  padding-bottom: 2rem;
-}
-
+/* ===== FONDO: reemplazamos el video oscuro por textura suave ===== */
 .fixed-video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10; /* detrás de todo el contenido */
-  pointer-events: none; /* no interfiere con clics */
+  display: none; /* ocultamos el video — el fondo ahora es crema */
 }
 
-.fixed-video-background video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ===== TIPOGRAFÍA GLOBAL ===== */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--carbon);
+  line-height: 1.2;
 }
+
+h4, h5, h6, p, span, label, button, input, select, textarea {
+  font-family: var(--font-body);
+}
+
+/* ===== SECCIONES ===== */
+section:not(#hero) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem 2rem;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--crema-oscura); }
+::-webkit-scrollbar-thumb { background: var(--arena); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--tierra); }

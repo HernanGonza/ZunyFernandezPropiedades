@@ -1,35 +1,83 @@
+/* ============================================
+   VALUATION FORM (Tasaciones)
+   ============================================ */
+
 .section {
-  padding: 4rem 2rem;
-  
+  padding: 5rem 3rem;
+  background: var(--crema-oscura);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elemento decorativo de fondo */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92, 107, 58, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(160, 113, 79, 0.07), transparent 70%);
+  pointer-events: none;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 760px;
   margin: 0 auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--blanco);
+  padding: 3rem 3.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--crema-oscura);
+  position: relative;
+  z-index: 1;
+}
+
+/* Acento superior */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  right: 3rem;
+  height: 2px;
+  background: linear-gradient(to right, var(--musgo), var(--tierra));
+  border-radius: 0 0 2px 2px;
 }
 
 .title {
-  font-family: var(--font-titillium); /* Bree Serif */
-  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 400;
   text-align: center;
-  margin-bottom: 1rem;
-  color: var(--color-1);
+  margin-bottom: 0.5rem;
+  color: var(--carbon);
 }
 
 .subtitle {
-  font-family: var(--font-titillium); /* Karma */
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #666;
+  margin-bottom: 2.5rem;
+  color: var(--gris-calido);
+  line-height: 1.6;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
 .formRow {
@@ -40,26 +88,46 @@
 
 .formRow > .formGroup {
   flex: 1;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .label {
-  font-family: var(--font-titillium);
+  font-family: var(--font-body);
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 600;
-  color: var(--color-1);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--carbon);
 }
 
 .input,
 .textarea,
 .select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: var(--font-titillium);
-  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--crema-oscura);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--carbon);
+  background: var(--blanco);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--arena);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--musgo);
+  box-shadow: 0 0 0 3px rgba(92, 107, 58, 0.1);
 }
 
 .textarea {
@@ -70,27 +138,64 @@
 .checkboxContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 10px;
+  margin-bottom: 1.4rem;
+  cursor: pointer;
 }
 
-.checkboxContainer input {
-  margin-right: 0.5rem;
+.checkboxContainer input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--musgo);
+  cursor: pointer;
+}
+
+.checkboxContainer span {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--gris-calido);
 }
 
 .button {
   width: 100%;
   padding: 1rem;
-  background-color: var(--color-4); /* verde oscuro */
+  background: var(--musgo);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-family: var(--font-titillium);
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
-.button:hover {
-  background-color: var(--color-3); /* verde medio */
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--musgo-oscuro);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.button span {
+  position: relative;
+  z-index: 1;
+}
+
+.button:hover::before {
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .section { padding: 4rem 1.5rem; }
+  .container { padding: 2rem 1.5rem; border-radius: var(--radius-lg); }
+  .container::before { left: 1.5rem; right: 1.5rem; }
+  .title { font-size: 1.8rem; }
 }

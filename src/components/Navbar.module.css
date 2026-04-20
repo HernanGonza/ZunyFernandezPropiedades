@@ -1,46 +1,50 @@
-/* NAVBAR TOP */
+/* ============================================
+   NAVBAR — Cálido, elegante, con scroll effect
+   ============================================ */
+
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 70px;
+  height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
   z-index: 999999;
-  transition: 0.35s ease;
-  background: rgba(0,0,0,0.15);
-  backdrop-filter: blur(12px);
-  isolation: isolate;
-  background-color: var(--deep-mocha);
-  font-family: var(--font-titillium); /* 👈 Titillium Web */
-  font-weight: 600 ;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  background: transparent;
+  font-family: var(--font-body);
 }
 
-.contactLink {
-  display: none;
-}
-
+/* Al hacer scroll: fondo crema con sombra suave */
 .navbar.scrolled {
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(18px);
+  background: rgba(245, 240, 232, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(160, 113, 79, 0.15), var(--shadow-sm);
+}
+
+/* ===== LOGO ===== */
+.logoLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
   z-index: 999999;
 }
 
-/* LOGO */
-.logoLink img {
-  height: 75px;
-  transition: .3s ease;
-  z-index: 999999;
-}
-.logoLink img:hover { 
-  opacity: .85; 
-  transform: scale(1.05);
-  z-index: 999999;
+.logoImg {
+  height: 56px;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+  filter: drop-shadow(0 2px 6px rgba(44, 36, 22, 0.2));
 }
 
-/* CENTER TEXT (Menu visible always) */
+.logoImg:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+/* ===== CENTRO: trigger de menú ===== */
 .navCenter {
   position: absolute;
   left: 50%;
@@ -50,170 +54,213 @@
 }
 
 .menuTrigger {
-  color: white;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: opacity .2s ease, transform .2s ease;
-  font-size: 2.1rem;
-  font-weight: 300;
-  user-select: none;
-  z-index: 9999;
-  position: relative;
   pointer-events: auto;
+  color: white;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  user-select: none;
   display: flex;
   align-items: center;
-  gap: 8px; /* Espacio entre ícono y texto */
-  z-index: 999999;
-}
-
-/* Ícono de menú (☰) */
-.menuTrigger::before {
-  content: "☰";
-  font-size: 1.8rem;
-  line-height: 1;
-  z-index: 999999;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
 }
 
 .menuTrigger:hover {
-  opacity: .75;
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
 }
+
+/* Cuando navbar está scrolled: trigger oscuro */
+.navbar.scrolled .menuTrigger {
+  color: var(--carbon);
+  border-color: rgba(44, 36, 22, 0.2);
+  background: rgba(44, 36, 22, 0.06);
+}
+
+.navbar.scrolled .menuTrigger:hover {
+  background: rgba(44, 36, 22, 0.12);
+  border-color: rgba(44, 36, 22, 0.35);
+}
+
 .menuTrigger.hidden {
   visibility: hidden;
 }
 
-/* CONTACT */
+/* Ícono hamburguesa */
+.menuTrigger::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 12px;
+  background: 
+    linear-gradient(currentColor, currentColor) 0 0/100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 5px/100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 10px/100% 2px no-repeat;
+  flex-shrink: 0;
+}
+
+/* ===== CONTACTO (derecha) ===== */
 .contactText {
   color: white;
-  letter-spacing: 2px;
   cursor: pointer;
-  transition: opacity .25s ease, transform .25s ease;
-  font-size: 2.1rem;
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   user-select: none;
+  transition: opacity 0.2s ease;
   z-index: 9999;
 }
 
-/* FIXED CERRAR */
+.contactText:hover {
+  opacity: 0.7;
+}
+
+.navbar.scrolled .contactText {
+  color: var(--gris-calido);
+}
+
+.navbar.scrolled .contactText:hover {
+  color: var(--tierra);
+}
+
+.contactLink {
+  display: none;
+}
+
+/* ===== CERRAR (fixed) ===== */
 .closeFixed {
   position: fixed;
-  top: calc((70px - 2.1rem) / 2);
+  top: calc((72px - 2.6rem) / 2);
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999999;
   color: white;
-  letter-spacing: 2px;
-  font-size: 2.1rem;
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   cursor: pointer;
-  background: transparent;
-  padding: 0;
-  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  padding: 10px 22px;
   user-select: none;
-  transition: opacity .2s ease, transform .2s ease;
+  transition: all 0.25s ease;
   -webkit-tap-highlight-color: transparent;
-  font-family: var(--font-titillium);
 }
 
-/* 👇 Animación de hover en "Cerrar" */
 .closeFixed:hover {
-  opacity: .85;
-  transform: translateX(-50%) scale(1.05); /* Ligero scale */
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-50%) translateY(-1px);
 }
 
-/* FULLSCREEN MENU */
+/* ===== MENÚ FULLSCREEN ===== */
 .fullscreenMenu {
   position: fixed;
   inset: 0;
-  backdrop-filter: blur(25px);
-  background: rgba(0,0,0,0.65);
   opacity: 0;
   pointer-events: none;
-  transition: opacity .35s ease;
+  transition: opacity 0.4s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999999;
+  z-index: 999998;
+  /* Fondo: gradiente cálido en vez del negro */
+  background: linear-gradient(
+    135deg,
+    rgba(44, 36, 22, 0.97) 0%,
+    rgba(92, 107, 58, 0.97) 60%,
+    rgba(160, 113, 79, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-/* 👇 Delay suave al abrir */
 .fullscreenMenu.open {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity .4s ease; /* Ligeramente más lento */
 }
 
-/* MENU CONTENT */
+/* Patrón decorativo de fondo del menú */
+.fullscreenMenu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(181, 194, 122, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(245, 240, 232, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
 .menuContent {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
-  text-align: center;
-  animation: scaleIn .33s ease forwards;
-  z-index: 9992;
+  align-items: center;
+  gap: 0.2rem;
+  position: relative;
+  z-index: 1;
 }
 
+/* Links del menú */
 .menuContent a,
-.menuContent a:visited {
-  color: white;
+.menuContent span[role="button"],
+.menuContent span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: var(--crema);
   text-decoration: none;
-  font-family: var(--font-titillium); /* 👈 Titillium Web */
-  font-size: 2.1rem;
-  font-weight: 600; /* más legible */
-  letter-spacing: 1px;
   cursor: pointer;
-  transition: .25s ease;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  padding: 0.15em 0.5em;
+  position: relative;
+  transition: color 0.25s ease;
   user-select: none;
 }
-.menuContent a:hover {
-  opacity: .65;
-  transform: translateX(4px);
+
+/* Línea decorativa al hover */
+.menuContent a::after,
+.menuContent span[role="button"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0.1em;
+  left: 0.5em;
+  right: 0.5em;
+  height: 1px;
+  background: var(--oliva-claro);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
-/* ANIMATION */
-@keyframes scaleIn {
-  from { 
-    transform: scale(.96); 
-    opacity: 0; 
-  }
-  to { 
-    transform: scale(1); 
-    opacity: 1; 
-  }
+.menuContent a:hover,
+.menuContent span[role="button"]:hover {
+  color: var(--oliva-claro);
 }
 
-/* ===== MEDIA QUERY: MOBILE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 18px;
-  }
+.menuContent a:hover::after,
+.menuContent span[role="button"]:hover::after {
+  transform: scaleX(1);
+}
 
-  .navCenter {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* Ocultar "Contacto" en móvil */
-  .contactText {
-    display: none !important;
-  }
-
-  /* Asegurar que el ícono se vea bien en móvil */
-  .menuTrigger::before {
-    font-size: 1.6rem;
-  }
-
-  .menuTrigger {
-    font-size: 1.8rem;
-    gap: 6px;
-  }
-
-  .closeFixed {
-    font-size: 1.8rem;
-  }
-
-  .contactLink {
-    display: inline;
-  }
+/* Separador decorativo en el menú */
+.menuDivider {
+  width: 40px;
+  height: 1px;
+  background: rgba(245, 240, 232, 0.25);
+  margin: 0.8rem auto;
 }

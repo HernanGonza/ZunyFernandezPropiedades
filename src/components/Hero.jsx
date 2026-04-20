@@ -1,3 +1,4 @@
+// src/components/Hero.jsx — REDESIGN
 import { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
 import { getPublicPath } from '../utils/publicPath';
@@ -11,10 +12,8 @@ export default function Hero() {
   const slidesRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Config
   const PAUSE_MS = 2500;
   const TRANSITION_MS = 3500;
-
   const indexRef = useRef(0);
 
   // Cargar fotos
@@ -37,32 +36,35 @@ export default function Hero() {
           setPhotos(urls);
         } else if (mounted) {
           setPhotos([
-            "https://placehold.co/600x400/4CAF50/FFFFFF?text=Foto+1",
-            "https://placehold.co/600x400/2196F3/FFFFFF?text=Foto+2",
-            "https://placehold.co/600x400/FF9800/FFFFFF?text=Foto+3",
+            "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260",
+            "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260",
+            "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260",
           ]);
         }
       } catch (err) {
-        console.error("Error cargando fotos Pexels:", err);
         if (mounted) {
           setPhotos([
-            "https://placehold.co/600x400/4CAF50/FFFFFF?text=Foto+1",
-            "https://placehold.co/600x400/2196F3/FFFFFF?text=Foto+2",
-            "https://placehold.co/600x400/FF9800/FFFFFF?text=Foto+3",
+            "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260",
+            "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260",
           ]);
         }
       } finally {
         if (mounted) setLoading(false);
       }
     }
-
     loadPhotos();
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, []);
 
-  // Auto-play del slider
+  // Trigger animación
+  useEffect(() => {
+    if (!loading && photos.length > 0) {
+      const t = setTimeout(() => setAnimated(true), 100);
+      return () => clearTimeout(t);
+    }
+  }, [loading, photos]);
+
+  // Auto-play slider
   useEffect(() => {
     if (photos.length === 0 || !animated) return;
     const total = photos.length;
@@ -72,102 +74,77 @@ export default function Hero() {
     const advance = () => {
       if (isStopped) return;
       indexRef.current += 1;
-
-      Array.from(slidesEl.children).forEach((slide) =>
-        slide.classList.remove(styles.zoom)
-      );
-
+      Array.from(slidesEl.children).forEach(s => s.classList.remove(styles.zoom));
       slidesEl.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(0.45,0.05,0.1,1)`;
       slidesEl.style.transform = `translateX(-${indexRef.current * 100}%)`;
-
       timeoutRef.current = setTimeout(() => {
         if (indexRef.current === total) {
-          slidesEl.style.transition = "none";
+          slidesEl.style.transition = 'none';
+          slidesEl.style.transform = 'translateX(0)';
           indexRef.current = 0;
-          slidesEl.style.transform = `translateX(0%)`;
-          slidesEl.offsetHeight;
         }
-
-        const currentSlide = slidesEl.children[indexRef.current];
-        if (currentSlide) {
-          currentSlide.classList.add(styles.zoom);
-        }
-
+        const curr = slidesEl.children[indexRef.current];
+        if (curr) curr.classList.add(styles.zoom);
         timeoutRef.current = setTimeout(advance, PAUSE_MS);
       }, TRANSITION_MS);
     };
 
-    slidesEl.style.transition = "none";
-    slidesEl.style.transform = `translateX(0%)`;
-    Array.from(slidesEl.children).forEach((s) => s.classList.remove(styles.zoom));
-    const first = slidesEl.children[0];
-    if (first) first.classList.add(styles.zoom);
-
+    const firstSlide = slidesEl?.children[0];
+    if (firstSlide) firstSlide.classList.add(styles.zoom);
     timeoutRef.current = setTimeout(advance, PAUSE_MS);
-
-    return () => {
-      isStopped = true;
-      clearTimeout(timeoutRef.current);
-    };
-  }, [photos, PAUSE_MS, TRANSITION_MS, animated]);
-
-  // Animación de entrada
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setAnimated(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const extended = photos.length ? [...photos, photos[0]] : [];
+    return () => { isStopped = true; clearTimeout(timeoutRef.current); };
+  }, [photos, animated]);
 
   return (
     <section id="hero" className={styles.hero} ref={heroRef}>
-      {/* Slider de fondo */}
+      {/* Slider */}
       <div className={styles.slider}>
-        <div className={styles.slides} ref={slidesRef}>
-          {extended.map((src, i) => (
-            <div className={styles.slide} key={i}>
-              <img src={src} alt={`Foto ${i + 1}`} loading="lazy" />
-            </div>
-          ))}
-        </div>
-        {loading && <div className={styles.loadingOverlay}>Cargando...</div>}
+        {loading ? (
+          <div className={styles.loadingOverlay}>Cargando</div>
+        ) : (
+          <div className={styles.slides} ref={slidesRef}>
+            {photos.map((url, i) => (
+              <div key={i} className={styles.slide}>
+                <img src={url} alt={`Propiedad ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+              </div>
+            ))}
+            {/* Clon del primero para loop infinito */}
+            {photos[0] && (
+              <div className={styles.slide}>
+                <img src={photos[0]} alt="loop" />
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Contenido centrado encima */}
+      {/* Contenido centrado */}
       <div className={`${styles.content} ${animated ? styles.contentAnimated : ''}`}>
-        {/* Dibujo (entra desde la izquierda) */}
         <div className={styles.logoPart}>
           <img
-            src={getPublicPath('/imagenes/dibujo-logo.png')}
-            alt="Dibujo Zuni Fernández Propiedades"
+            src={getPublicPath('/imagenes/logoTransparente.png')}
+            alt="Zuny Fernandez Propiedades"
             className={styles.logoImage}
           />
         </div>
-
-        {/* Letras (entran desde la derecha) */}
         <div className={styles.logoPart}>
           <img
-            src={getPublicPath('/imagenes/letras-logo.png')}
-            alt="Letras Zuni Fernández Propiedades"
+            src={getPublicPath('/imagenes/logoLetras.png')}
+            alt="Zuny Fernandez Propiedades"
             className={styles.logoImage}
+            onError={(e) => { e.target.style.display = 'none'; }}
           />
         </div>
+        <p className={styles.heroTagline}>Posadas · Misiones · Argentina</p>
       </div>
+
+      {/* Indicador de scroll */}
+      {animated && (
+        <div className={styles.scrollIndicator}>
+          <div className={styles.scrollLine}></div>
+          <span className={styles.scrollText}>Explorar</span>
+        </div>
+      )}
     </section>
   );
 }
