@@ -1,4 +1,4 @@
-// src/components/Footer.jsx — REDESIGN
+// src/components/Footer.jsx
 import styles from './Footer.module.css';
 import FormularioContacto from './FormularioContacto';
 import { getPublicPath } from '../utils/publicPath';
@@ -41,7 +41,10 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Zuny Fernández Propiedades. Todos los derechos reservados.
         </div>
         <div className={styles.developer}>
-          Desarrollado por <a href="https://www.paralelo.tech" target="_blank" rel="noopener noreferrer">Paralelo</a>
+          Desarrollado por{' '}
+          <a href="https://www.paralelo.tech" target="_blank" rel="noopener noreferrer">
+            <img src={getPublicPath('imagenes/logo-paralelo.png')} alt="Paralelo" className={styles.developerLogo} />
+          </a>
         </div>
       </div>
     </footer>

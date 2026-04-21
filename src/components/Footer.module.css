@@ -158,7 +158,7 @@
 }
 
 /* Logo en footer (si se necesita mostrar) */
-.logo { display: none; }
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -175,3 +175,10 @@
     order: -1; /* Formulario primero en mobile */
   }
 }
+
+.developerLogo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+}
+
