@@ -12,8 +12,7 @@
 /* ===== SLIDER ===== */
 .slider {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -43,28 +42,26 @@
   transition: transform 8s ease-out;
 }
 
-/* Overlay cálido sobre la foto — degradé tierra/musgo */
+/* Overlay cálido */
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(44, 36, 22, 0.55) 0%,
-    rgba(92, 107, 58, 0.40) 50%,
-    rgba(160, 113, 79, 0.30) 100%
+    rgba(44, 36, 22, 0.60) 0%,
+    rgba(92, 107, 58, 0.45) 50%,
+    rgba(160, 113, 79, 0.35) 100%
   );
   z-index: 2;
   pointer-events: none;
 }
 
-/* Gradiente bottom para transición suave al contenido */
+/* Gradiente bottom */
 .hero::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 280px;
   background: linear-gradient(to bottom, transparent, rgba(245, 240, 232, 0.7), var(--crema));
   z-index: 3;
@@ -91,8 +88,7 @@
 /* ===== CONTENIDO ===== */
 .content {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -117,7 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .logoPart:first-child {
@@ -129,24 +125,28 @@
   animation-delay: 0.25s;
 }
 
+/* Logo más grande */
 .logoImage {
   max-width: 100%;
-  height: 160px;
-  filter: drop-shadow(0 4px 20px rgba(44, 36, 22, 0.4)) brightness(1.05);
+  height: 220px;
+  filter: drop-shadow(0 4px 24px rgba(44, 36, 22, 0.5)) brightness(1.05);
 }
 
-/* Tagline debajo del logo */
+/* Tagline — más grande y con sombra para legibilidad sobre cualquier foto */
 .heroTagline {
   font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.85);
-  margin-top: 0.5rem;
+  color: rgba(245, 240, 232, 0.95);
+  margin-top: 1rem;
   animation: fadeInUp 1s ease forwards;
   animation-delay: 0.5s;
   opacity: 0;
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.6),
+    0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Scroll indicator */
@@ -178,6 +178,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.6);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 /* ===== ANIMACIONES ===== */
@@ -204,10 +205,11 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .content { padding: 0 1rem; }
-  .logoImage { max-width: 90%; height: 130px; }
+  .logoImage { height: 170px; max-width: 90%; }
+  .heroTagline { font-size: 0.85rem; letter-spacing: 4px; }
 }
 
 @media (max-width: 480px) {
-  .logoImage { max-width: 85%; height: 110px; }
-  .heroTagline { font-size: 0.72rem; letter-spacing: 3px; }
+  .logoImage { height: 140px; max-width: 85%; }
+  .heroTagline { font-size: 0.75rem; letter-spacing: 3px; }
 }
