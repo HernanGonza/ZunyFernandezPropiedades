@@ -1,5 +1,5 @@
 /* ============================================
-   NAVBAR — Cálido, elegante, con scroll effect
+   NAVBAR
    ============================================ */
 
 .navbar {
@@ -17,7 +17,6 @@
   font-family: var(--font-body);
 }
 
-/* Al hacer scroll: fondo crema con sombra suave */
 .navbar.scrolled {
   background: rgba(245, 240, 232, 0.96);
   backdrop-filter: blur(20px);
@@ -44,7 +43,7 @@
   transform: scale(1.03);
 }
 
-/* ===== CENTRO: trigger de menú ===== */
+/* ===== CENTRO ===== */
 .navCenter {
   position: absolute;
   left: 50%;
@@ -71,7 +70,8 @@
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  /* SIN transition de opacity/visibility para evitar el overlap */
 }
 
 .menuTrigger:hover {
@@ -80,7 +80,6 @@
   transform: translateY(-1px);
 }
 
-/* Cuando navbar está scrolled: trigger oscuro */
 .navbar.scrolled .menuTrigger {
   color: var(--carbon);
   border-color: rgba(44, 36, 22, 0.2);
@@ -92,8 +91,12 @@
   border-color: rgba(44, 36, 22, 0.35);
 }
 
+/* Oculto instantáneamente — sin transición para no encimarse con "Cerrar" */
 .menuTrigger.hidden {
   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
 }
 
 /* Ícono hamburguesa */
@@ -109,7 +112,7 @@
   flex-shrink: 0;
 }
 
-/* ===== CONTACTO (derecha) ===== */
+/* ===== CONTACTO ===== */
 .contactText {
   color: white;
   cursor: pointer;
@@ -123,26 +126,17 @@
   z-index: 9999;
 }
 
-.contactText:hover {
-  opacity: 0.7;
-}
+.contactText:hover { opacity: 0.7; }
 
-.navbar.scrolled .contactText {
-  color: var(--gris-calido);
-}
+.navbar.scrolled .contactText { color: var(--gris-calido); }
+.navbar.scrolled .contactText:hover { color: var(--tierra); }
 
-.navbar.scrolled .contactText:hover {
-  color: var(--tierra);
-}
-
-.contactLink {
-  display: none;
-}
+.contactLink { display: none; }
 
 /* ===== CERRAR (fixed) ===== */
 .closeFixed {
   position: fixed;
-  top: calc((72px - 2.6rem) / 2);
+  top: calc((72px - 2.2rem) / 2);
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999999;
@@ -158,7 +152,7 @@
   border-radius: 100px;
   padding: 10px 22px;
   user-select: none;
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, transform 0.25s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -167,18 +161,17 @@
   transform: translateX(-50%) translateY(-1px);
 }
 
-/* ===== MENÚ FULLSCREEN ===== */
+/* ===== MENÚ FULLSCREEN — cortina de arriba a abajo ===== */
 .fullscreenMenu {
   position: fixed;
   inset: 0;
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.55s cubic-bezier(0.77, 0, 0.18, 1);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999998;
-  /* Fondo: gradiente cálido en vez del negro */
   background: linear-gradient(
     135deg,
     rgba(44, 36, 22, 0.97) 0%,
@@ -189,21 +182,22 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
-.fullscreenMenu.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Patrón decorativo de fondo del menú */
 .fullscreenMenu::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 20% 50%, rgba(181, 194, 122, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(245, 240, 232, 0.05) 0%, transparent 40%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(181, 194, 122, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 240, 232, 0.05) 0%, transparent 40%);
   pointer-events: none;
 }
 
+.fullscreenMenu.open {
+  clip-path: inset(0 0 0% 0);
+  pointer-events: auto;
+}
+
+/* ===== CONTENIDO DEL MENÚ — aparece con delay ===== */
 .menuContent {
   display: flex;
   flex-direction: column;
@@ -211,9 +205,16 @@
   gap: 0.2rem;
   position: relative;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s;
 }
 
-/* Links del menú */
+.fullscreenMenu.open .menuContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .menuContent a,
 .menuContent span[role="button"],
 .menuContent span {
@@ -232,14 +233,12 @@
   user-select: none;
 }
 
-/* Línea decorativa al hover */
 .menuContent a::after,
 .menuContent span[role="button"]::after {
   content: '';
   position: absolute;
   bottom: 0.1em;
-  left: 0.5em;
-  right: 0.5em;
+  left: 0.5em; right: 0.5em;
   height: 1px;
   background: var(--oliva-claro);
   transform: scaleX(0);
@@ -257,10 +256,16 @@
   transform: scaleX(1);
 }
 
-/* Separador decorativo en el menú */
 .menuDivider {
   width: 40px;
   height: 1px;
   background: rgba(245, 240, 232, 0.25);
   margin: 0.8rem auto;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .navbar { padding: 0 1.2rem; }
+  .contactText { display: none !important; }
+  .contactLink { display: inline; }
 }
