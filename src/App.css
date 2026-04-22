@@ -6,7 +6,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  /* Paleta principal */
   --crema:        #F5F0E8;
   --crema-oscura: #EDE5D4;
   --arena:        #D4C5A9;
@@ -20,23 +19,19 @@
   --gris-calido:  #7A7060;
   --blanco:       #FDFAF5;
 
-  /* Tipografías */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
 
-  /* Sombras */
   --shadow-sm:  0 2px 8px rgba(44, 36, 22, 0.08);
   --shadow-md:  0 6px 24px rgba(44, 36, 22, 0.12);
   --shadow-lg:  0 16px 48px rgba(44, 36, 22, 0.18);
   --shadow-xl:  0 32px 80px rgba(44, 36, 22, 0.22);
 
-  /* Bordes */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 32px;
 
-  /* Transiciones */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -47,10 +42,22 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* #root y #app-wrapper: solo flex column, sin min-height */
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+#app-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 body {
@@ -61,28 +68,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#app-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* .app-container: flex column sin min-height forzado */
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   background-color: var(--crema);
 }
 
-/* El footer empuja hasta el fondo sin dejar espacio */
-.app-container > footer,
-#app-wrapper > footer {
-  margin-top: auto;
+/* El footer queda siempre al final sin generar espacio extra */
+.app-container > footer {
+  margin-top: 0;
 }
 
-/* ===== FONDO: reemplazamos el video oscuro por textura suave ===== */
+/* ===== FONDO VIDEO: oculto ===== */
 .fixed-video-background {
-  display: none; /* ocultamos el video — el fondo ahora es crema */
+  display: none;
 }
 
 /* ===== TIPOGRAFÍA GLOBAL ===== */
@@ -110,3 +110,12 @@ section:not(#hero) {
 ::-webkit-scrollbar-track { background: var(--crema-oscura); }
 ::-webkit-scrollbar-thumb { background: var(--arena); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--tierra); }
+
+/* ===== OCULTAR SECTION VACÍA DEL TOASTER (sonner) ===== */
+section[aria-label="Notifications"]:empty,
+section[aria-label="Notifications alt+T"]:empty {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}

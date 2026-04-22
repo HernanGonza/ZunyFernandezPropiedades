@@ -10,7 +10,7 @@ import './fonts.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HashRouter>
-      <div id="app-wrapper" style={{ position: 'relative', minHeight: '100vh' }}>
+      <div id="app-wrapper">
         <App />
         <Toaster position="top-center" />
       </div>
